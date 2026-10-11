@@ -1,0 +1,190 @@
+{
+  "motor1": {
+    "n_base": 4107,
+    "i_base": 21.428571428571427,
+    "v_base": 13.856406460551019,
+    "p_base": 445.38449337485412,
+    "t_base": 0.82226766688621544
+  },
+  "motor2": {
+    "n_base": 4107,
+    "i_base": 21.428571428571427,
+    "v_base": 13.856406460551019,
+    "p_base": 445.38449337485412,
+    "t_base": 0.82226766688621544
+  },
+  "source": "mcb_pmsm_foc_host_model_dyno.slx",
+  "rnd_meth": "Simplest",
+  "serial": {
+    "baudrate": "12e6",
+    "byte_order": "little-endian"
+  },
+  "cases": [
+    {
+      "rpm": 1200,
+      "imag_ref": 1,
+      "imag_pos": 90,
+      "selection": 0,
+      "enabled": true,
+      "single_hex": "27 99 95 3E 00 00 80 3F 8C 25 3F 3D 00 00 80 3E",
+      "q28_hex": "38 C9 AC 04 01 00 00 00 8C 25 BF 00 00 00 00 04"
+    },
+    {
+      "rpm": -1200,
+      "imag_ref": -1,
+      "imag_pos": 270,
+      "selection": 15,
+      "enabled": false,
+      "single_hex": "27 99 95 BE 00 00 70 43 8C 25 3F BD 00 00 40 3F",
+      "q28_hex": "C8 36 53 FB F0 00 00 00 74 DA 40 FF 00 00 00 0C"
+    },
+    {
+      "rpm": 0.001,
+      "imag_ref": 0.0001,
+      "imag_pos": 0.001,
+      "selection": 7,
+      "enabled": true,
+      "single_hex": "90 B8 82 34 00 00 E2 42 5C 96 9C 36 DD 69 3A 36",
+      "q28_hex": "41 00 00 00 71 00 00 00 E4 04 00 00 E9 02 00 00"
+    },
+    {
+      "rpm": 2000,
+      "imag_ref": 2,
+      "imag_pos": 180,
+      "selection": 12,
+      "enabled": true,
+      "single_hex": "96 54 F9 3E 00 00 41 43 8C 25 BF 3D 00 00 00 3F",
+      "q28_hex": "B0 A4 CA 07 C1 00 00 00 18 4B 7E 01 00 00 00 08"
+    }
+  ],
+  "groups": [
+    {
+      "selection": 0,
+      "expression": "[PU_System_motor1.N_base PU_System_motor2.N_base]",
+      "scales": [
+        4107,
+        4107
+      ]
+    },
+    {
+      "selection": 1,
+      "expression": "[PU_System_motor1.N_base PU_System_motor1.N_base]",
+      "scales": [
+        4107,
+        4107
+      ]
+    },
+    {
+      "selection": 2,
+      "expression": "[PU_System_motor1.I_base PU_System_motor1.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    },
+    {
+      "selection": 3,
+      "expression": "[PU_System_motor1.I_base PU_System_motor1.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    },
+    {
+      "selection": 4,
+      "expression": "[PU_System_motor1.V_base PU_System_motor1.V_base]",
+      "scales": [
+        13.856406460551019,
+        13.856406460551019
+      ]
+    },
+    {
+      "selection": 5,
+      "expression": "[PU_System_motor1.I_base PU_System_motor1.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    },
+    {
+      "selection": 6,
+      "expression": "[PU_System_motor1.P_base  PU_System_motor1.T_base]",
+      "scales": [
+        445.38449337485412,
+        0.82226766688621544
+      ]
+    },
+    {
+      "selection": 7,
+      "expression": "[PU_System_motor2.I_base PU_System_motor2.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    },
+    {
+      "selection": 8,
+      "expression": "[PU_System_motor2.I_base PU_System_motor2.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    },
+    {
+      "selection": 9,
+      "expression": "[PU_System_motor2.V_base PU_System_motor2.V_base]",
+      "scales": [
+        13.856406460551019,
+        13.856406460551019
+      ]
+    },
+    {
+      "selection": 10,
+      "expression": "[PU_System_motor2.I_base PU_System_motor2.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    },
+    {
+      "selection": 11,
+      "expression": "[PU_System_motor2.P_base  PU_System_motor2.T_base]",
+      "scales": [
+        445.38449337485412,
+        0.82226766688621544
+      ]
+    },
+    {
+      "selection": 12,
+      "expression": "[PU_System_motor1.P_base  PU_System_motor2.P_base]",
+      "scales": [
+        445.38449337485412,
+        445.38449337485412
+      ]
+    },
+    {
+      "selection": 13,
+      "expression": "[PU_System_motor1.T_base  PU_System_motor2.T_base]",
+      "scales": [
+        0.82226766688621544,
+        0.82226766688621544
+      ]
+    },
+    {
+      "selection": 14,
+      "expression": "[1 1]",
+      "scales": [
+        1,
+        1
+      ]
+    },
+    {
+      "selection": 15,
+      "expression": "[PU_System_motor1.I_base PU_System_motor2.I_base]",
+      "scales": [
+        21.428571428571427,
+        21.428571428571427
+      ]
+    }
+  ]
+}

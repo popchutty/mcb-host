@@ -1,0 +1,87 @@
+name: Test, build and release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    name: ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+          - os: ubuntu-24.04
+            platform: linux
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Linux desktop libraries
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libopengl0 libxkbcommon-x11-0 libxcb-cursor0 fonts-noto-cjk
+      - name: Install developer dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Check release tag
+        if: github.ref_type == 'tag'
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: python -c "import os, sciscope; assert os.environ['RELEASE_TAG'] == 'v' + sciscope.__version__, 'Tag and app version differ'"
+      - name: Tests
+        run: python -m pytest -q --basetemp=artifacts/pytest-tmp --junitxml=artifacts/pytest.xml
+      - name: Build release archive
+        run: python tools/build.py --archive
+      - name: Packaged simulated capture
+        run: python tools/smoke_bundle.py
+      - name: Upload test result
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-${{ matrix.platform }}
+          path: artifacts/pytest.xml
+          retention-days: 7
+      - name: Upload release archive
+        uses: actions/upload-artifact@v7
+        with:
+          name: SCIScope-${{ matrix.platform }}-x64
+          path: dist/SCIScope-*
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+  release:
+    if: github.ref_type == 'tag'
+    needs: test-and-build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: SCIScope-*
+          merge-multiple: true
+          path: release
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" release/SCIScope-* --verify-tag --title "SCI Scope $RELEASE_TAG" --generate-notes

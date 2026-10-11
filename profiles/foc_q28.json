@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "name": "官方单电机 FOC · Q28",
+  "serial": {
+    "port": "",
+    "baudrate": 12000000,
+    "bytesize": 8,
+    "parity": "N",
+    "stopbits": 1.0,
+    "byte_order": "little"
+  },
+  "tx": {
+    "sci_module": "A",
+    "header": "''",
+    "header_mode": "ASCII",
+    "terminator": "''",
+    "terminator_mode": "ASCII",
+    "data_type": "uint32",
+    "length_option": "Length via dialog",
+    "data_length": 2,
+    "fields": [
+      {
+        "name": "Speed_PU",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Control",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      }
+    ],
+    "send_mode": "manual",
+    "interval_ms": 100
+  },
+  "rx": {
+    "header": "'SSSS'",
+    "header_mode": "ASCII",
+    "terminator": "'EEEE'",
+    "terminator_mode": "ASCII",
+    "data_type": "uint32",
+    "channels": 2,
+    "samples_per_frame": 600,
+    "sample_rate": 20000.0,
+    "layout": "interleaved",
+    "channel_info": [
+      {
+        "name": "Speed_ref",
+        "unit": "rpm",
+        "scale": 4107.0,
+        "offset": 0.0,
+        "fractional_bits": 28,
+        "signed_bits": true
+      },
+      {
+        "name": "Speed_feedback",
+        "unit": "rpm",
+        "scale": 4107.0,
+        "offset": 0.0,
+        "fractional_bits": 28,
+        "signed_bits": true
+      }
+    ]
+  },
+  "tools": {
+    "foc": {
+      "n_base": 4107.0,
+      "i_base": 21.428571428571427,
+      "rpm": 2000.0,
+      "selection": 1,
+      "map_channels": true
+    }
+  }
+}

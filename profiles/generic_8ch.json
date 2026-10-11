@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "name": "Generic 8 channels / 20 kHz",
+  "serial": {
+    "port": "",
+    "baudrate": 12000000,
+    "bytesize": 8,
+    "parity": "N",
+    "stopbits": 1.0,
+    "byte_order": "little"
+  },
+  "tx": {
+    "sci_module": "A",
+    "header": "''",
+    "header_mode": "ASCII",
+    "terminator": "''",
+    "terminator_mode": "ASCII",
+    "data_type": "single",
+    "length_option": "Length via dialog",
+    "data_length": 2,
+    "fields": [
+      {
+        "name": "Data1",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Data2",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      }
+    ],
+    "send_mode": "manual",
+    "interval_ms": 100
+  },
+  "rx": {
+    "header": "'SSSS'",
+    "header_mode": "ASCII",
+    "terminator": "'EEEE'",
+    "terminator_mode": "ASCII",
+    "data_type": "single",
+    "channels": 8,
+    "samples_per_frame": 600,
+    "sample_rate": 20000.0,
+    "layout": "interleaved",
+    "channel_info": [
+      {
+        "name": "Channel1",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel2",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel3",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel4",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel5",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel6",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel7",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Channel8",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      }
+    ]
+  },
+  "tools": {}
+}

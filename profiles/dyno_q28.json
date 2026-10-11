@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "name": "官方对拖 FOC · Q28",
+  "serial": {
+    "port": "",
+    "baudrate": 12000000,
+    "bytesize": 8,
+    "parity": "N",
+    "stopbits": 1.0,
+    "byte_order": "little"
+  },
+  "tx": {
+    "sci_module": "A",
+    "header": "''",
+    "header_mode": "ASCII",
+    "terminator": "''",
+    "terminator_mode": "ASCII",
+    "data_type": "uint32",
+    "length_option": "Length via dialog",
+    "data_length": 4,
+    "fields": [
+      {
+        "name": "M1_Speed_PU",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Control",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "M2_Imag_PU",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "M2_Imag_Pos_PU",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      }
+    ],
+    "send_mode": "manual",
+    "interval_ms": 100
+  },
+  "rx": {
+    "header": "'SSSS'",
+    "header_mode": "ASCII",
+    "terminator": "'EEEE'",
+    "terminator_mode": "ASCII",
+    "data_type": "uint32",
+    "channels": 2,
+    "samples_per_frame": 600,
+    "sample_rate": 20000.0,
+    "layout": "interleaved",
+    "channel_info": [
+      {
+        "name": "M1_Speed_ref",
+        "unit": "rpm",
+        "scale": 4107.0,
+        "offset": 0.0,
+        "fractional_bits": 28,
+        "signed_bits": true
+      },
+      {
+        "name": "M2_Speed_feedback",
+        "unit": "rpm",
+        "scale": 4107.0,
+        "offset": 0.0,
+        "fractional_bits": 28,
+        "signed_bits": true
+      }
+    ]
+  },
+  "tools": {
+    "dyno": {
+      "motor1": {
+        "n_base": 4107.0,
+        "i_base": 21.428571428571427,
+        "v_base": 13.85640646055102,
+        "p_base": 445.3844933748541,
+        "t_base": 0.8222676668862154
+      },
+      "motor2": {
+        "n_base": 4107.0,
+        "i_base": 21.428571428571427,
+        "v_base": 13.85640646055102,
+        "p_base": 445.3844933748541,
+        "t_base": 0.8222676668862154
+      },
+      "rpm": 1200.0,
+      "imag_ref": 1.0,
+      "imag_pos": 90.0,
+      "selection": 0,
+      "map_channels": true
+    }
+  }
+}

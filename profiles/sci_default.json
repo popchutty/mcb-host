@@ -1,0 +1,72 @@
+{
+  "version": 2,
+  "name": "SCI · single / 2 通道",
+  "serial": {
+    "port": "",
+    "baudrate": 12000000,
+    "bytesize": 8,
+    "parity": "N",
+    "stopbits": 1.0,
+    "byte_order": "little"
+  },
+  "tx": {
+    "sci_module": "A",
+    "header": "''",
+    "header_mode": "ASCII",
+    "terminator": "''",
+    "terminator_mode": "ASCII",
+    "data_type": "single",
+    "length_option": "Length via dialog",
+    "data_length": 2,
+    "fields": [
+      {
+        "name": "Data1",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "Data2",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      }
+    ],
+    "send_mode": "manual",
+    "interval_ms": 100
+  },
+  "rx": {
+    "header": "'SSSS'",
+    "header_mode": "ASCII",
+    "terminator": "'EEEE'",
+    "terminator_mode": "ASCII",
+    "data_type": "single",
+    "channels": 2,
+    "samples_per_frame": 600,
+    "sample_rate": 20000.0,
+    "layout": "interleaved",
+    "channel_info": [
+      {
+        "name": "CH1",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      },
+      {
+        "name": "CH2",
+        "unit": "",
+        "scale": 1.0,
+        "offset": 0.0,
+        "fractional_bits": 0,
+        "signed_bits": false
+      }
+    ]
+  },
+  "tools": {}
+}
