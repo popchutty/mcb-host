@@ -46,7 +46,9 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: python -c "import os, sciscope; assert os.environ['RELEASE_TAG'] == 'v' + sciscope.__version__, 'Tag and app version differ'"
       - name: Tests
-        run: python -m pytest -q --basetemp=artifacts/pytest-tmp --junitxml=artifacts/pytest.xml
+        run: |
+          python -c "from pathlib import Path; Path('artifacts').mkdir(exist_ok=True)"
+          python -m pytest -q --basetemp=artifacts/pytest-tmp --junitxml=artifacts/pytest.xml
       - name: Build release archive
         run: python tools/build.py --archive
       - name: Packaged simulated capture
